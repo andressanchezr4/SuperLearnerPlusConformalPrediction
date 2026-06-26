@@ -1,0 +1,66 @@
+{
+  "task": "classification",
+  "input_mode": "single_csv_auto_split",
+  "data_path": "data.csv",
+  "train_data_path": null,
+  "validation_data_path": null,
+  "conformal_data_path": null,
+  "target_column": "gutper",
+  "feature_columns": "ccl,icl",
+  "continuous_columns": "none",
+  "ohe_columns": "ccl,icl",
+  "ordinal_columns": "none",
+  "use_conformal": false,
+  "cv_folds": 3,
+  "models": [
+    "logistic_regression",
+    "knn",
+    "naive_bayes"
+  ],
+  "alpha": 0.1,
+  "random_state": 42,
+  "data": {
+    "rows_loaded": 8046,
+    "rows_after_dropping_missing_target": 8046,
+    "dropped_missing_target_rows": 0,
+    "n_features": 2,
+    "n_classes": 2,
+    "selected_feature_columns": [
+      "ccl",
+      "icl"
+    ]
+  },
+  "features": {
+    "numeric_columns": [],
+    "categorical_columns": [
+      "ccl",
+      "icl"
+    ],
+    "continuous_columns": [],
+    "ohe_columns": [
+      "ccl",
+      "icl"
+    ],
+    "ordinal_columns": [],
+    "auto_continuous_columns": [],
+    "auto_ohe_columns": []
+  },
+  "class_labels": [
+    "0",
+    "1"
+  ],
+  "split_sizes": {
+    "train": 6436,
+    "conformal": null,
+    "calibration": null,
+    "validation": 1610,
+    "test": 1610
+  },
+  "split_info": {
+    "validation_split_stratified": true,
+    "input_mode": "single_csv_auto_split",
+    "predefined_splits": false,
+    "automatic_split": "train_validation"
+  },
+  "used_stratified_cv": true
+}

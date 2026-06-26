@@ -1,0 +1,125 @@
+2026-06-25 00:08:50,625 | INFO | Selected classification models: logistic_regression, ridge_classifier, random_forest, extra_trees, gradient_boosting, hist_gradient_boosting, svm, knn, naive_bayes, mlp, xgboost_classifier, lightgbm_classifier, catboost_classifier
+2026-06-25 00:08:50,626 | INFO | Input mode: single_csv_auto_split
+2026-06-25 00:08:50,628 | INFO | Conformal prediction enabled: True
+2026-06-25 00:08:50,637 | INFO | Loading data...
+2026-06-25 00:08:50,696 | INFO | Train rows: 4827 | Validation rows: 1610
+2026-06-25 00:08:50,696 | INFO | Conformal rows: 1609
+2026-06-25 00:08:50,698 | INFO | Feature columns: 2 | Classes: 2
+2026-06-25 00:08:50,707 | INFO | Selected feature columns: ccl, icl
+2026-06-25 00:08:50,719 | INFO | Loading data completed in 0.08 seconds
+2026-06-25 00:08:50,720 | INFO | Building preprocessing pipeline...
+2026-06-25 00:08:50,721 | INFO | Numeric columns: 0
+2026-06-25 00:08:50,721 | INFO | Categorical columns: 2
+2026-06-25 00:08:50,721 | INFO | Ordinal columns: 0
+2026-06-25 00:08:50,722 | INFO | Building preprocessing pipeline completed in 0.00 seconds
+2026-06-25 00:08:50,723 | INFO | Creating model registry...
+2026-06-25 00:08:50,958 | INFO | Creating model registry completed in 0.24 seconds
+2026-06-25 00:08:50,959 | INFO | Generating out-of-fold probabilities...
+2026-06-25 00:08:50,961 | INFO | Using StratifiedKFold with 5 folds.
+2026-06-25 00:08:50,980 | INFO | Training OOF probabilities for base model: logistic_regression
+2026-06-25 00:08:51,027 | INFO | logistic_regression fold 1/5 accuracy=0.924431 elapsed=0.03s
+2026-06-25 00:08:51,047 | INFO | logistic_regression fold 2/5 accuracy=0.923395 elapsed=0.02s
+2026-06-25 00:08:51,072 | INFO | logistic_regression fold 3/5 accuracy=0.945078 elapsed=0.02s
+2026-06-25 00:08:51,092 | INFO | logistic_regression fold 4/5 accuracy=0.932642 elapsed=0.02s
+2026-06-25 00:08:51,113 | INFO | logistic_regression fold 5/5 accuracy=0.936788 elapsed=0.02s
+2026-06-25 00:08:51,117 | INFO | Training OOF probabilities for base model: ridge_classifier
+2026-06-25 00:08:51,145 | INFO | ridge_classifier fold 1/5 accuracy=0.925466 elapsed=0.02s
+2026-06-25 00:08:51,171 | INFO | ridge_classifier fold 2/5 accuracy=0.926501 elapsed=0.02s
+2026-06-25 00:08:51,187 | INFO | ridge_classifier fold 3/5 accuracy=0.944041 elapsed=0.01s
+2026-06-25 00:08:51,204 | INFO | ridge_classifier fold 4/5 accuracy=0.931606 elapsed=0.01s
+2026-06-25 00:08:51,221 | INFO | ridge_classifier fold 5/5 accuracy=0.940933 elapsed=0.01s
+2026-06-25 00:08:51,225 | INFO | Training OOF probabilities for base model: random_forest
+2026-06-25 00:08:51,821 | INFO | random_forest fold 1/5 accuracy=0.927536 elapsed=0.59s
+2026-06-25 00:08:52,372 | INFO | random_forest fold 2/5 accuracy=0.926501 elapsed=0.55s
+2026-06-25 00:08:52,908 | INFO | random_forest fold 3/5 accuracy=0.945078 elapsed=0.53s
+2026-06-25 00:08:53,470 | INFO | random_forest fold 4/5 accuracy=0.934715 elapsed=0.56s
+2026-06-25 00:08:54,015 | INFO | random_forest fold 5/5 accuracy=0.944041 elapsed=0.54s
+2026-06-25 00:08:54,024 | INFO | Training OOF probabilities for base model: extra_trees
+2026-06-25 00:08:54,464 | INFO | extra_trees fold 1/5 accuracy=0.927536 elapsed=0.44s
+2026-06-25 00:08:54,914 | INFO | extra_trees fold 2/5 accuracy=0.926501 elapsed=0.44s
+2026-06-25 00:08:55,372 | INFO | extra_trees fold 3/5 accuracy=0.945078 elapsed=0.45s
+2026-06-25 00:08:55,795 | INFO | extra_trees fold 4/5 accuracy=0.934715 elapsed=0.42s
+2026-06-25 00:08:56,226 | INFO | extra_trees fold 5/5 accuracy=0.944041 elapsed=0.42s
+2026-06-25 00:08:56,228 | INFO | Training OOF probabilities for base model: gradient_boosting
+2026-06-25 00:08:56,448 | INFO | gradient_boosting fold 1/5 accuracy=0.930642 elapsed=0.22s
+2026-06-25 00:08:56,662 | INFO | gradient_boosting fold 2/5 accuracy=0.930642 elapsed=0.21s
+2026-06-25 00:08:56,875 | INFO | gradient_boosting fold 3/5 accuracy=0.945078 elapsed=0.21s
+2026-06-25 00:08:57,089 | INFO | gradient_boosting fold 4/5 accuracy=0.932642 elapsed=0.21s
+2026-06-25 00:08:57,306 | INFO | gradient_boosting fold 5/5 accuracy=0.944041 elapsed=0.21s
+2026-06-25 00:08:57,310 | INFO | Training OOF probabilities for base model: hist_gradient_boosting
+2026-06-25 00:08:59,287 | INFO | hist_gradient_boosting fold 1/5 accuracy=0.927536 elapsed=1.98s
+2026-06-25 00:08:59,510 | INFO | hist_gradient_boosting fold 2/5 accuracy=0.926501 elapsed=0.22s
+2026-06-25 00:08:59,739 | INFO | hist_gradient_boosting fold 3/5 accuracy=0.945078 elapsed=0.23s
+2026-06-25 00:08:59,988 | INFO | hist_gradient_boosting fold 4/5 accuracy=0.934715 elapsed=0.25s
+2026-06-25 00:09:00,234 | INFO | hist_gradient_boosting fold 5/5 accuracy=0.944041 elapsed=0.24s
+2026-06-25 00:09:00,237 | INFO | Training OOF probabilities for base model: svm
+2026-06-25 00:09:00,826 | INFO | svm fold 1/5 accuracy=0.927536 elapsed=0.59s
+2026-06-25 00:09:01,394 | INFO | svm fold 2/5 accuracy=0.926501 elapsed=0.57s
+2026-06-25 00:09:01,992 | INFO | svm fold 3/5 accuracy=0.945078 elapsed=0.60s
+2026-06-25 00:09:02,578 | INFO | svm fold 4/5 accuracy=0.934715 elapsed=0.58s
+2026-06-25 00:09:03,186 | INFO | svm fold 5/5 accuracy=0.944041 elapsed=0.61s
+2026-06-25 00:09:03,192 | INFO | Training OOF probabilities for base model: knn
+2026-06-25 00:09:03,306 | INFO | knn fold 1/5 accuracy=0.916149 elapsed=0.11s
+2026-06-25 00:09:03,342 | INFO | knn fold 2/5 accuracy=0.927536 elapsed=0.03s
+2026-06-25 00:09:03,368 | INFO | knn fold 3/5 accuracy=0.940933 elapsed=0.02s
+2026-06-25 00:09:03,404 | INFO | knn fold 4/5 accuracy=0.921244 elapsed=0.03s
+2026-06-25 00:09:03,444 | INFO | knn fold 5/5 accuracy=0.938860 elapsed=0.04s
+2026-06-25 00:09:03,448 | INFO | Training OOF probabilities for base model: naive_bayes
+2026-06-25 00:09:03,464 | INFO | naive_bayes fold 1/5 accuracy=0.917184 elapsed=0.01s
+2026-06-25 00:09:03,490 | INFO | naive_bayes fold 2/5 accuracy=0.913043 elapsed=0.02s
+2026-06-25 00:09:03,517 | INFO | naive_bayes fold 3/5 accuracy=0.920207 elapsed=0.02s
+2026-06-25 00:09:03,537 | INFO | naive_bayes fold 4/5 accuracy=0.921244 elapsed=0.02s
+2026-06-25 00:09:03,555 | INFO | naive_bayes fold 5/5 accuracy=0.927461 elapsed=0.02s
+2026-06-25 00:09:03,560 | INFO | Training OOF probabilities for base model: mlp
+2026-06-25 00:09:04,425 | INFO | mlp fold 1/5 accuracy=0.927536 elapsed=0.86s
+2026-06-25 00:09:05,268 | INFO | mlp fold 2/5 accuracy=0.926501 elapsed=0.84s
+2026-06-25 00:09:06,245 | INFO | mlp fold 3/5 accuracy=0.945078 elapsed=0.97s
+2026-06-25 00:09:06,920 | INFO | mlp fold 4/5 accuracy=0.934715 elapsed=0.67s
+2026-06-25 00:09:07,664 | INFO | mlp fold 5/5 accuracy=0.943005 elapsed=0.74s
+2026-06-25 00:09:07,668 | INFO | Training OOF probabilities for base model: xgboost_classifier
+2026-06-25 00:09:07,852 | INFO | xgboost_classifier fold 1/5 accuracy=0.927536 elapsed=0.18s
+2026-06-25 00:09:08,031 | INFO | xgboost_classifier fold 2/5 accuracy=0.927536 elapsed=0.18s
+2026-06-25 00:09:08,214 | INFO | xgboost_classifier fold 3/5 accuracy=0.945078 elapsed=0.18s
+2026-06-25 00:09:08,388 | INFO | xgboost_classifier fold 4/5 accuracy=0.934715 elapsed=0.17s
+2026-06-25 00:09:08,562 | INFO | xgboost_classifier fold 5/5 accuracy=0.943005 elapsed=0.17s
+2026-06-25 00:09:08,566 | INFO | Training OOF probabilities for base model: lightgbm_classifier
+2026-06-25 00:09:09,337 | INFO | lightgbm_classifier fold 1/5 accuracy=0.927536 elapsed=0.77s
+2026-06-25 00:09:10,050 | INFO | lightgbm_classifier fold 2/5 accuracy=0.926501 elapsed=0.71s
+2026-06-25 00:09:10,684 | INFO | lightgbm_classifier fold 3/5 accuracy=0.945078 elapsed=0.62s
+2026-06-25 00:09:11,039 | INFO | lightgbm_classifier fold 4/5 accuracy=0.933679 elapsed=0.35s
+2026-06-25 00:09:11,432 | INFO | lightgbm_classifier fold 5/5 accuracy=0.943005 elapsed=0.39s
+2026-06-25 00:09:11,435 | INFO | Training OOF probabilities for base model: catboost_classifier
+2026-06-25 00:09:12,520 | INFO | catboost_classifier fold 1/5 accuracy=0.927536 elapsed=1.08s
+2026-06-25 00:09:13,360 | INFO | catboost_classifier fold 2/5 accuracy=0.926501 elapsed=0.84s
+2026-06-25 00:09:14,205 | INFO | catboost_classifier fold 3/5 accuracy=0.945078 elapsed=0.84s
+2026-06-25 00:09:15,072 | INFO | catboost_classifier fold 4/5 accuracy=0.934715 elapsed=0.86s
+2026-06-25 00:09:15,899 | INFO | catboost_classifier fold 5/5 accuracy=0.943005 elapsed=0.83s
+2026-06-25 00:09:15,902 | INFO | Generating out-of-fold probabilities completed in 24.94 seconds
+2026-06-25 00:09:15,902 | INFO | Training classification meta-model...
+2026-06-25 00:09:15,913 | INFO | Training classification meta-model completed in 0.01 seconds
+2026-06-25 00:09:15,913 | INFO | Refitting final base models...
+2026-06-25 00:09:15,914 | INFO | Fitting final base model on full training data: logistic_regression
+2026-06-25 00:09:15,930 | INFO | Fitting final base model on full training data: ridge_classifier
+2026-06-25 00:09:15,944 | INFO | Fitting final base model on full training data: random_forest
+2026-06-25 00:09:16,459 | INFO | Fitting final base model on full training data: extra_trees
+2026-06-25 00:09:16,842 | INFO | Fitting final base model on full training data: gradient_boosting
+2026-06-25 00:09:17,093 | INFO | Fitting final base model on full training data: hist_gradient_boosting
+2026-06-25 00:09:17,425 | INFO | Fitting final base model on full training data: svm
+2026-06-25 00:09:18,258 | INFO | Fitting final base model on full training data: knn
+2026-06-25 00:09:18,266 | INFO | Fitting final base model on full training data: naive_bayes
+2026-06-25 00:09:18,276 | INFO | Fitting final base model on full training data: mlp
+2026-06-25 00:09:19,342 | INFO | Fitting final base model on full training data: xgboost_classifier
+2026-06-25 00:09:19,520 | INFO | Fitting final base model on full training data: lightgbm_classifier
+2026-06-25 00:09:19,891 | INFO | Fitting final base model on full training data: catboost_classifier
+2026-06-25 00:09:20,804 | INFO | Refitting final base models completed in 4.89 seconds
+2026-06-25 00:09:20,805 | INFO | Calibrating conformal prediction sets...
+2026-06-25 00:09:21,207 | INFO | Conformal q_hat: 0.417893
+2026-06-25 00:09:21,208 | INFO | Calibrating conformal prediction sets completed in 0.40 seconds
+2026-06-25 00:09:21,208 | INFO | Evaluating final SuperLearner...
+2026-06-25 00:09:21,662 | INFO | Final accuracy=0.940994 balanced_accuracy=0.915237 f1_macro=0.918560 log_loss=0.128374
+2026-06-25 00:09:21,663 | INFO | Conformal coverage=0.926708 mean prediction set size=0.978882
+2026-06-25 00:09:21,665 | INFO | Evaluating final SuperLearner completed in 0.46 seconds
+2026-06-25 00:09:21,665 | INFO | Saving artifacts...
+2026-06-25 00:09:22,346 | INFO | Saving artifacts completed in 0.68 seconds
+2026-06-25 00:09:22,346 | INFO | Training finished. Artifacts saved in: results\classification_full
+2026-06-25 00:09:22,348 | INFO | Calibration scores stored in memory only: 1609 values.

@@ -1,0 +1,44 @@
+{
+  "task": "classification",
+  "data_path": "data.csv",
+  "target_column": "gutper",
+  "cv_folds": 3,
+  "models": [
+    "logistic_regression",
+    "knn",
+    "naive_bayes"
+  ],
+  "alpha": 0.1,
+  "random_state": 42,
+  "data": {
+    "rows_loaded": 8046,
+    "rows_after_dropping_missing_target": 8046,
+    "dropped_missing_target_rows": 0,
+    "n_features": 5,
+    "n_classes": 2
+  },
+  "features": {
+    "numeric_columns": [],
+    "categorical_columns": [
+      "hmdb_id",
+      "name",
+      "ccl",
+      "icl",
+      "inchi"
+    ]
+  },
+  "class_labels": [
+    "0",
+    "1"
+  ],
+  "split_sizes": {
+    "train": 4827,
+    "calibration": 1609,
+    "test": 1610
+  },
+  "split_info": {
+    "first_split_stratified": true,
+    "second_split_stratified": true
+  },
+  "used_stratified_cv": true
+}

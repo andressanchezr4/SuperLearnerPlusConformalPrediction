@@ -1,0 +1,47 @@
+2026-06-24 23:39:39,357 | INFO | Selected classification models: logistic_regression, knn, naive_bayes
+2026-06-24 23:39:39,357 | INFO | Loading data...
+2026-06-24 23:39:39,428 | INFO | Loaded 8046 rows, 5 feature columns, and 2 classes.
+2026-06-24 23:39:39,428 | INFO | Loading data completed in 0.07 seconds
+2026-06-24 23:39:39,428 | INFO | Building preprocessing pipeline...
+2026-06-24 23:39:39,429 | INFO | Numeric columns: 0
+2026-06-24 23:39:39,430 | INFO | Categorical columns: 5
+2026-06-24 23:39:39,430 | INFO | Building preprocessing pipeline completed in 0.00 seconds
+2026-06-24 23:39:39,430 | INFO | Creating train, calibration, and test splits...
+2026-06-24 23:39:39,436 | INFO | Train rows: 4827 | Calibration rows: 1609 | Test rows: 1610
+2026-06-24 23:39:39,436 | INFO | Stratified splits: first=True second=True
+2026-06-24 23:39:39,436 | INFO | Creating train, calibration, and test splits completed in 0.01 seconds
+2026-06-24 23:39:39,436 | INFO | Creating model registry...
+2026-06-24 23:39:39,436 | INFO | Creating model registry completed in 0.00 seconds
+2026-06-24 23:39:39,436 | INFO | Generating out-of-fold probabilities...
+2026-06-24 23:39:39,436 | INFO | Using StratifiedKFold with 3 folds.
+2026-06-24 23:39:39,436 | INFO | Training OOF probabilities for base model: logistic_regression
+2026-06-24 23:39:40,938 | INFO | logistic_regression fold 1/3 accuracy=0.922933 elapsed=1.50s
+2026-06-24 23:39:42,436 | INFO | logistic_regression fold 2/3 accuracy=0.940957 elapsed=1.50s
+2026-06-24 23:39:44,130 | INFO | logistic_regression fold 3/3 accuracy=0.934121 elapsed=1.69s
+2026-06-24 23:39:44,131 | INFO | Training OOF probabilities for base model: knn
+2026-06-24 23:39:45,209 | INFO | knn fold 1/3 accuracy=0.926663 elapsed=1.08s
+2026-06-24 23:39:46,272 | INFO | knn fold 2/3 accuracy=0.927906 elapsed=1.06s
+2026-06-24 23:39:47,311 | INFO | knn fold 3/3 accuracy=0.930392 elapsed=1.04s
+2026-06-24 23:39:47,312 | INFO | Training OOF probabilities for base model: naive_bayes
+2026-06-24 23:39:48,267 | INFO | naive_bayes fold 1/3 accuracy=0.908639 elapsed=0.95s
+2026-06-24 23:39:49,235 | INFO | naive_bayes fold 2/3 accuracy=0.917340 elapsed=0.97s
+2026-06-24 23:39:50,213 | INFO | naive_bayes fold 3/3 accuracy=0.923555 elapsed=0.98s
+2026-06-24 23:39:50,214 | INFO | Generating out-of-fold probabilities completed in 10.78 seconds
+2026-06-24 23:39:50,214 | INFO | Training classification meta-model...
+2026-06-24 23:39:50,224 | INFO | Training classification meta-model completed in 0.01 seconds
+2026-06-24 23:39:50,224 | INFO | Refitting final base models...
+2026-06-24 23:39:50,224 | INFO | Fitting final base model on full training data: logistic_regression
+2026-06-24 23:39:53,571 | INFO | Fitting final base model on full training data: knn
+2026-06-24 23:39:54,087 | INFO | Fitting final base model on full training data: naive_bayes
+2026-06-24 23:39:55,432 | INFO | Refitting final base models completed in 5.21 seconds
+2026-06-24 23:39:55,432 | INFO | Calibrating conformal prediction sets...
+2026-06-24 23:39:57,521 | INFO | Conformal q_hat: 0.416886
+2026-06-24 23:39:57,522 | INFO | Calibrating conformal prediction sets completed in 2.09 seconds
+2026-06-24 23:39:57,522 | INFO | Evaluating final SuperLearner...
+2026-06-24 23:39:59,500 | INFO | Final accuracy=0.939752 balanced_accuracy=0.907354 f1_macro=0.915776 log_loss=0.131528
+2026-06-24 23:39:59,500 | INFO | Conformal coverage=0.929814 mean prediction set size=0.982609
+2026-06-24 23:39:59,500 | INFO | Evaluating final SuperLearner completed in 1.98 seconds
+2026-06-24 23:39:59,500 | INFO | Saving artifacts...
+2026-06-24 23:39:59,843 | INFO | Saving artifacts completed in 0.34 seconds
+2026-06-24 23:39:59,843 | INFO | Training finished. Artifacts saved in: results\classification_pilot
+2026-06-24 23:39:59,843 | INFO | Calibration scores stored in memory only: 1609 values.

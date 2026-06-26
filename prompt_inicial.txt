@@ -1,0 +1,516 @@
+# Prompt para crear un SuperLearner con predicción conformal
+
+Quiero preparar para un hackathon el esqueleto funcional de un proyecto en Python que implemente un **SuperLearner con una capa de predicción conformal** para datos tabulares.
+
+El objetivo es generar código ejecutable, limpio, modular y fácil de modificar durante el hackathon.
+
+**Implementa código ejecutable, no solo pseudocódigo. El proyecto debe poder probarse con cualquier CSV tabular simple, siempre que el usuario indique correctamente la columna objetivo.**
+
+---
+
+## Estructura general del proyecto
+
+Crea, dentro de la carpeta actual, una estructura de proyecto con dos carpetas principales:
+
+```text
+regression/
+classification/
+```
+
+En `regression/`, crea todos los scripts necesarios para entrenar un SuperLearner en un problema de **regresión**.
+
+En `classification/`, crea los scripts equivalentes para entrenar un SuperLearner en un problema de **clasificación**.
+
+La estructura final esperada debe ser:
+
+```text
+project/
+├── regression/
+│   ├── train_superlearner_regression.py
+│   ├── conformal_regression.py
+│   ├── models.py
+│   ├── utils.py
+│   └── progress.py
+├── classification/
+│   ├── train_superlearner_classification.py
+│   ├── conformal_classification.py
+│   ├── models.py
+│   ├── utils.py
+│   └── progress.py
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## Ejecución desde línea de comandos
+
+Los scripts principales deben poder ejecutarse desde línea de comandos.
+
+### Regresión
+
+```bash
+python regression/train_superlearner_regression.py \
+  --data_path data/regression_data.csv \
+  --target_column y \
+  --cv_folds 5 \
+  --models all \
+  --output_dir results/regression
+```
+
+### Clasificación
+
+```bash
+python classification/train_superlearner_classification.py \
+  --data_path data/classification_data.csv \
+  --target_column label \
+  --cv_folds 5 \
+  --models all \
+  --output_dir results/classification
+```
+
+Los argumentos mínimos desde línea de comandos deben ser:
+
+```bash
+--data_path
+--target_column
+--cv_folds
+--models
+--output_dir
+```
+
+Donde:
+
+```text
+--data_path: ruta al archivo CSV de entrada.
+--target_column: nombre de la columna objetivo.
+--cv_folds: número de particiones para la validación cruzada.
+--models: modelos base que se quieren usar en el SuperLearner.
+--output_dir: carpeta donde guardar modelos, métricas, predicciones, logs y configuración.
+```
+
+La flag `--models` debe aceptar una lista de modelos separados por comas. Por ejemplo:
+
+```bash
+--models random_forest,extra_trees,gradient_boosting,svm,knn
+```
+
+También debe aceptar:
+
+```bash
+--models all
+```
+
+para usar todos los modelos disponibles.
+
+---
+
+## Modelos disponibles
+
+Incluye al menos los siguientes modelos disponibles para **regresión**:
+
+```text
+linear_model
+ridge
+lasso
+elastic_net
+random_forest
+extra_trees
+gradient_boosting
+hist_gradient_boosting
+svm
+knn
+xgboost_regressor
+lightgbm_regressor
+catboost_regressor
+```
+
+Incluye al menos los siguientes modelos disponibles para **clasificación**:
+
+```text
+logistic_regression
+ridge_classifier
+random_forest
+extra_trees
+gradient_boosting
+hist_gradient_boosting
+svm
+knn
+naive_bayes
+mlp
+xgboost_classifier
+lightgbm_classifier
+catboost_classifier
+```
+
+Para los modelos XGBoost, LightGBM y CatBoost, usa sus equivalentes correctos en regresión y clasificación:
+
+```text
+xgboost_regressor → XGBRegressor
+xgboost_classifier → XGBClassifier
+
+lightgbm_regressor → LGBMRegressor
+lightgbm_classifier → LGBMClassifier
+
+catboost_regressor → CatBoostRegressor
+catboost_classifier → CatBoostClassifier
+```
+
+---
+
+## Dependencias
+
+Añade estas dependencias al `requirements.txt`:
+
+```text
+pandas
+numpy
+scikit-learn
+tqdm
+joblib
+xgboost
+lightgbm
+catboost
+```
+
+El código debe comprobar de forma robusta si `xgboost`, `lightgbm` o `catboost` están instalados.
+
+Si el usuario selecciona uno de esos modelos y la librería correspondiente no está disponible, el script debe mostrar un mensaje de error claro indicando qué paquete falta y cómo instalarlo, por ejemplo:
+
+```bash
+pip install xgboost lightgbm catboost
+```
+
+---
+
+## Configuraciones por defecto para modelos avanzados
+
+Usa configuraciones razonables por defecto para estos modelos.
+
+### Regresión
+
+```python
+XGBRegressor(
+    n_estimators=300,
+    learning_rate=0.05,
+    max_depth=4,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=random_state,
+    n_jobs=-1
+)
+
+LGBMRegressor(
+    n_estimators=300,
+    learning_rate=0.05,
+    num_leaves=31,
+    random_state=random_state,
+    n_jobs=-1
+)
+
+CatBoostRegressor(
+    iterations=300,
+    learning_rate=0.05,
+    depth=6,
+    random_seed=random_state,
+    verbose=False
+)
+```
+
+### Clasificación
+
+```python
+XGBClassifier(
+    n_estimators=300,
+    learning_rate=0.05,
+    max_depth=4,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=random_state,
+    n_jobs=-1,
+    eval_metric="logloss"
+)
+
+LGBMClassifier(
+    n_estimators=300,
+    learning_rate=0.05,
+    num_leaves=31,
+    random_state=random_state,
+    n_jobs=-1
+)
+
+CatBoostClassifier(
+    iterations=300,
+    learning_rate=0.05,
+    depth=6,
+    random_seed=random_state,
+    verbose=False
+)
+```
+
+---
+
+## Pipeline de regresión
+
+El pipeline de **regresión** debe:
+
+1. Cargar un dataset tabular desde CSV usando `pandas`.
+2. Comprobar que la columna objetivo existe.
+3. Separar automáticamente `X` e `y`.
+4. Detectar variables numéricas y categóricas.
+5. Preprocesar las variables:
+
+   * Imputación de valores faltantes.
+   * Escalado de variables numéricas cuando sea necesario.
+   * One-hot encoding de variables categóricas.
+6. Dividir los datos en:
+
+   * entrenamiento,
+   * calibración,
+   * test.
+7. Entrenar los modelos base seleccionados usando validación cruzada.
+8. Generar predicciones out-of-fold para construir el dataset del meta-aprendiz.
+9. Entrenar un meta-modelo de regresión, por ejemplo `RidgeCV`.
+10. Reentrenar los modelos base finales usando todo el conjunto de entrenamiento.
+11. Evaluar el SuperLearner en test.
+12. Aplicar predicción conformal para generar intervalos de predicción.
+13. Guardar resultados.
+
+---
+
+## Pipeline de clasificación
+
+El pipeline de **clasificación** debe:
+
+1. Cargar un dataset tabular desde CSV usando `pandas`.
+2. Comprobar que la columna objetivo existe.
+3. Separar automáticamente `X` e `y`.
+4. Detectar variables numéricas y categóricas.
+5. Preprocesar las variables:
+
+   * Imputación de valores faltantes.
+   * Escalado de variables numéricas cuando sea necesario.
+   * One-hot encoding de variables categóricas.
+6. Codificar la variable objetivo si es necesario.
+7. Dividir los datos en:
+
+   * entrenamiento,
+   * calibración,
+   * test.
+8. Entrenar los modelos base seleccionados usando validación cruzada estratificada.
+9. Generar predicciones out-of-fold, preferiblemente probabilidades, para construir el dataset del meta-aprendiz.
+10. Entrenar un meta-modelo de clasificación, por ejemplo `LogisticRegression`.
+11. Reentrenar los modelos base finales usando todo el conjunto de entrenamiento.
+12. Evaluar el SuperLearner en test.
+13. Aplicar predicción conformal para generar conjuntos de predicción conformal.
+14. Guardar resultados.
+
+---
+
+## Predicción conformal
+
+La predicción conformal debe implementarse de forma clara y sencilla.
+
+### Regresión
+
+Para **regresión**:
+
+* Usa un conjunto de calibración separado.
+* Calcula los residuos absolutos entre `y_calibration` y las predicciones del SuperLearner.
+* Usa el cuantil correspondiente a `1 - alpha`.
+* Genera intervalos:
+
+```text
+[y_pred - q_hat, y_pred + q_hat]
+```
+
+Incluye una flag opcional:
+
+```bash
+--alpha
+```
+
+con valor por defecto `0.1`.
+
+---
+
+### Clasificación
+
+Para **clasificación**:
+
+* Usa un conjunto de calibración separado.
+* Calcula scores conformales basados en la probabilidad asignada a la clase verdadera:
+
+```text
+score = 1 - p_true_class
+```
+
+* Usa el cuantil correspondiente a `1 - alpha`.
+* Para cada muestra de test, incluye en el conjunto conformal todas las clases cuya probabilidad cumpla:
+
+```text
+1 - p_class <= q_hat
+```
+
+Incluye también la flag opcional:
+
+```bash
+--alpha
+```
+
+con valor por defecto `0.1`.
+
+---
+
+## Progreso del entrenamiento
+
+El entrenamiento debe mostrar de forma clara cómo evoluciona y cuánto falta para terminar.
+
+Añade:
+
+* Barras de progreso con `tqdm`.
+* Progreso por modelo base.
+* Progreso por fold de validación cruzada.
+* Mensajes al entrenar el meta-modelo.
+* Mensajes durante calibración conformal.
+* Mensajes durante evaluación final.
+* Estimación de tiempo restante cuando sea razonable.
+* Un archivo `training_log.txt` en `output_dir`.
+
+---
+
+## Archivos de salida
+
+El proyecto debe guardar en `output_dir`:
+
+```text
+trained_superlearner.joblib
+base_models.joblib
+metrics.json
+predictions.csv
+config.json
+training_log.txt
+```
+
+Para regresión, `predictions.csv` debe incluir al menos:
+
+```text
+y_true
+y_pred
+lower_bound
+upper_bound
+```
+
+Para clasificación, `predictions.csv` debe incluir al menos:
+
+```text
+y_true
+y_pred
+predicted_probability
+conformal_prediction_set
+```
+
+---
+
+## Métricas mínimas
+
+Las métricas mínimas para regresión deben incluir:
+
+```text
+MAE
+RMSE
+R2
+conformal_coverage
+mean_interval_width
+```
+
+Las métricas mínimas para clasificación deben incluir:
+
+```text
+accuracy
+balanced_accuracy
+f1_macro
+log_loss
+conformal_coverage
+mean_prediction_set_size
+```
+
+---
+
+## Organización modular del código
+
+El código debe estar organizado de forma modular:
+
+```text
+models.py: definición y selección de modelos disponibles.
+
+utils.py: carga de datos, validaciones, preprocesamiento, guardado de resultados.
+
+conformal_regression.py: funciones de calibración conformal para regresión.
+
+conformal_classification.py: funciones de calibración conformal para clasificación.
+
+progress.py: utilidades de logging y barras de progreso.
+
+train_superlearner_regression.py: script principal de entrenamiento para regresión.
+
+train_superlearner_classification.py: script principal de entrenamiento para clasificación.
+```
+
+---
+
+## README.md
+
+Incluye un `README.md` completo con:
+
+1. Descripción breve del proyecto.
+2. Estructura de carpetas.
+3. Instalación de dependencias.
+4. Ejemplo de ejecución para regresión.
+5. Ejemplo de ejecución para clasificación.
+6. Ejemplo usando todos los modelos.
+7. Ejemplo usando solo XGBoost, LightGBM y CatBoost.
+8. Explicación breve de qué es un SuperLearner.
+9. Explicación breve de qué es la predicción conformal.
+10. Descripción de los archivos generados en `output_dir`.
+
+Incluye ejemplos específicos en el README:
+
+```bash
+python regression/train_superlearner_regression.py \
+  --data_path data/regression_data.csv \
+  --target_column y \
+  --cv_folds 5 \
+  --models xgboost_regressor,lightgbm_regressor,catboost_regressor \
+  --output_dir results/regression
+```
+
+```bash
+python classification/train_superlearner_classification.py \
+  --data_path data/classification_data.csv \
+  --target_column label \
+  --cv_folds 5 \
+  --models xgboost_classifier,lightgbm_classifier,catboost_classifier \
+  --output_dir results/classification
+```
+
+---
+
+## Buenas prácticas mínimas
+
+El código debe tener buenas prácticas mínimas:
+
+* Funciones claras.
+* Comentarios útiles.
+* Validación de argumentos.
+* Mensajes de error comprensibles.
+* Uso de `random_state` reproducible.
+* Compatibilidad con datasets pequeños.
+* Evitar dependencias innecesariamente complejas.
+* No asumir nombres fijos de columnas salvo la columna objetivo indicada por el usuario.
+* No asumir que todas las variables son numéricas.
+* No asumir clasificación binaria; debe soportar clasificación multiclase si el dataset lo permite.
+
+Prioriza claridad y extensibilidad frente a hiperoptimización.
+
+El objetivo es tener una base robusta y funcional para un hackathon.

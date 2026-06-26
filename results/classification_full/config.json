@@ -1,0 +1,78 @@
+{
+  "task": "classification",
+  "input_mode": "single_csv_auto_split",
+  "data_path": "data.csv",
+  "train_data_path": null,
+  "validation_data_path": null,
+  "conformal_data_path": null,
+  "target_column": "gutper",
+  "feature_columns": "ccl,icl",
+  "continuous_columns": "none",
+  "ohe_columns": "ccl,icl",
+  "ordinal_columns": "none",
+  "use_conformal": true,
+  "cv_folds": 5,
+  "models": [
+    "logistic_regression",
+    "ridge_classifier",
+    "random_forest",
+    "extra_trees",
+    "gradient_boosting",
+    "hist_gradient_boosting",
+    "svm",
+    "knn",
+    "naive_bayes",
+    "mlp",
+    "xgboost_classifier",
+    "lightgbm_classifier",
+    "catboost_classifier"
+  ],
+  "mlp_loss": "log_loss",
+  "alpha": 0.1,
+  "random_state": 42,
+  "data": {
+    "rows_loaded": 8046,
+    "rows_after_dropping_missing_target": 8046,
+    "dropped_missing_target_rows": 0,
+    "n_features": 2,
+    "n_classes": 2,
+    "selected_feature_columns": [
+      "ccl",
+      "icl"
+    ]
+  },
+  "features": {
+    "numeric_columns": [],
+    "categorical_columns": [
+      "ccl",
+      "icl"
+    ],
+    "continuous_columns": [],
+    "ohe_columns": [
+      "ccl",
+      "icl"
+    ],
+    "ordinal_columns": [],
+    "auto_continuous_columns": [],
+    "auto_ohe_columns": []
+  },
+  "class_labels": [
+    "0",
+    "1"
+  ],
+  "split_sizes": {
+    "train": 4827,
+    "conformal": 1609,
+    "calibration": 1609,
+    "validation": 1610,
+    "test": 1610
+  },
+  "split_info": {
+    "first_split_stratified": true,
+    "second_split_stratified": true,
+    "input_mode": "single_csv_auto_split",
+    "predefined_splits": false,
+    "automatic_split": "train_conformal_validation"
+  },
+  "used_stratified_cv": true
+}
